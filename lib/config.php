@@ -26,17 +26,30 @@ class Config
 
     public function ShnoContacUS_register($request)
     {
-        
 
-       $this->save_message($this->filte_data($request->get_params()));
+
+        $this->save_message($this->filte_data($request->get_params()));
         wp_safe_redirect(site_url());
-        wp_safe_redirect( $_SERVER['HTTP_REFERER']);
+        wp_safe_redirect($_SERVER['HTTP_REFERER']);
         exit();
 
     }
-    public function ShnoContacUS_delete()
+    public function ShnoContacUS_delete($request)
     {
-        echo "delete";
+        // echo "delete";
+
+        $input = $request->get_params();
+        if (isset($input['id'])) {
+
+            $this->delete_message($input['id']);
+
+
+        }
+
+        wp_safe_redirect(site_url());
+        wp_safe_redirect($_SERVER['HTTP_REFERER']);
+        exit();
+
     }
 
 
@@ -57,6 +70,18 @@ class Config
             array(
                 'methods' => WP_REST_Server::READABLE,
                 'callback' => array($this, 'ShnoContacUS_delete'),
+            )
+        );
+
+
+
+
+        register_rest_route(
+            'ShnoContacUS',
+            '/see',
+            array(
+                'methods' => WP_REST_Server::READABLE,
+                'callback' => array($this, 'ShnoContacUS_see'),
             )
         );
     }
@@ -89,29 +114,71 @@ class Config
     public function save_message($arr)
     {
         global $wpdb;
-        return $wpdb->insert("{$wpdb->prefix}shno_message_return"
-        ,$arr);
+        return $wpdb->insert(
+            "{$wpdb->prefix}shno_message_return"
+            ,
+            $arr
+        );
 
     }
+    public function delete_message($id)
+    {
+        global $wpdb;
+
+        $sql_string = "DELETE  FROM 
+        {$wpdb->prefix}shno_message_return where Id = " . $id;
+
+
+        //this is okay this is best way tahnk you
+        $wpdb->get_results($sql_string);
+
+
+    }
+
+
+    public function ShnoContacUS_see($id)
+    {
+        global $wpdb;
+
+        $sql_string = "select *  FROM 
+        {$wpdb->prefix} shno_message_return where Id = ";
+       
+       
+       
+       
+       
+        // $sql_string = "select *  FROM 
+        // {$wpdb->prefix}shno_message_return where Id = " . $id;
+
+
+        //this is okay this is best way tahnk you
+    //  var_dump($wpdb->get_results($sql_string));
+
+    echo "test";
+
+    }
+
+
 
 
     public static function getUrlRegister()
     {
         return site_url() . "/wp-json/" . "ShnoContacUS/register";
     }
+   
 
-
-    public function filte_data($array_input){
+    public function filte_data($array_input)
+    {
         return
-        [
-        "Name"=>isset($array_input['Name'])?$array_input['Name']:'',
-        "Email"=>isset($array_input['Email'])?$array_input['Email']:'',
-        "Mobile"=>isset($array_input['Mobile'])?$array_input['Mobile']:'',
-        "Topic"=>isset($array_input['Topic'])?$array_input['Topic']:'',
-        "discription"=>isset($array_input['discription'])?$array_input['discription']:'',
-        "Is_see"=>'0',
-        "User_id"=>'2'
-        ];
+            [
+                "Name" => isset($array_input['Name']) ? $array_input['Name'] : '',
+                "Email" => isset($array_input['Email']) ? $array_input['Email'] : '',
+                "Mobile" => isset($array_input['Mobile']) ? $array_input['Mobile'] : '',
+                "Topic" => isset($array_input['Topic']) ? $array_input['Topic'] : '',
+                "discription" => isset($array_input['discription']) ? $array_input['discription'] : '',
+                "Is_see" => '0',
+                "User_id" => '2'
+            ];
 
     }
 

@@ -16,6 +16,12 @@
 
 
 
+ // Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+
 
 define("SHNO_CONFIG", plugin_dir_path(__FILE__) . "lib/config.php");
 require_once (SHNO_CONFIG);
