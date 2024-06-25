@@ -1,12 +1,11 @@
 <?php
 class ShnoPublic
 {
-
-
     public function load()
     {
+
         ?>
-        <link rel="stylesheet" href="<?php echo site_url() . "/wp-content/plugins/shnoContacUs/public/css/style.css" ?>">
+        <link rel="stylesheet" href="<?php echo plugin_dir_url(__FILE__) ."/css/style.css" ?>">
         <div class="container">
             <form method="post" action="<?php echo site_url() . "/wp-json/" . "ShnoContacUS/register"?>">
 
@@ -36,9 +35,5 @@ class ShnoPublic
         <?php
 
     }
-
-
-
-
 
 }

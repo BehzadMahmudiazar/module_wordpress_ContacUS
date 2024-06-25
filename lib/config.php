@@ -36,7 +36,6 @@ class Config
     }
     public function ShnoContacUS_delete($request)
     {
-        // echo "delete";
 
         $input = $request->get_params();
         if (isset($input['id'])) {
@@ -145,51 +144,12 @@ class Config
         $sql_string = "DELETE  FROM 
         {$wpdb->prefix}shno_message_return where Id = " . $id;
 
-
-        //this is okay this is best way tahnk you
         $wpdb->get_results($sql_string);
 
 
     }
 
 
-    public function ShnoContacUS_see($request)
-    {
-        
-        require_once ABSPATH . 'wp-admin/admin-header.php'; 
-
-
-        $input = $request->get_params();
-        if (isset($input['id'])) {
-
-            global $wpdb;
-
-            $sql_string = "select *  FROM 
-            {$wpdb->prefix} shno_message_return where Id = {$input['id']}";
-
-            // var_dump($wpdb->get_results($sql_string));
-
-//         echo "hhhh";
-        //  require_once ABSPATH . 'wp-admin/admin-footer.php'; 
-
-           
-        }
-
-   
-
-
-    echo "test";
-
-    }
-
-
-
-
-    public static function getUrlRegister()
-    {
-        return site_url() . "/wp-json/" . "ShnoContacUS/register";
-    }
-   
 
     public function filte_data($array_input)
     {

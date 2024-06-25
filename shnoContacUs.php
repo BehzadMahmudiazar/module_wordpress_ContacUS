@@ -16,9 +16,9 @@
 
 
 
- // Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+// Exit if accessed directly.
+if (!defined('ABSPATH')) {
+    exit;
 }
 
 
@@ -33,7 +33,6 @@ $shno_config->Check(__FILE__);
 $shno_config->setRoute();
 
 
-// $shno_config->getUrlRegister();
 
 
 if (is_admin()) {
@@ -50,25 +49,6 @@ function shno_load($atts = [], $content = null)
         $shno_public->load();
     }
 }
-
-
-// function my_menu_pages() {
-//     $hook = add_submenu_page(
-//             'null', 'Page Title', 'Page Title', 'administrator', 'sub-menu-slug', function() {
-//     }
-//     );
-//     add_action('load-' . $hook, function() {
-//         // add your xml code here, 
-//         // you will get a blank page to start with
-//         require_once ABSPATH . 'wp-admin/admin-header.php'; 
-//         echo "hhhh";
-//          require_once ABSPATH . 'wp-admin/admin-footer.php'; 
-//         exit;
-//     });
-// }
-
-// add_action('admin_menu', 'my_menu_pages');
-
 
 
 

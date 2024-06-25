@@ -81,15 +81,7 @@ class admin
         <?php } ?>
       </ul>
     </div>
-
-
-
-
-
     <?php
-
-
-
   }
 
 
@@ -128,7 +120,6 @@ class admin
   }
 
 
-
   public function ShowContac($id)
   {
   
@@ -164,11 +155,7 @@ class admin
       </form>
     </div>
     <?php
-
-
   }
-
-
 
 }
 
