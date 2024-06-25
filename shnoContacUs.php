@@ -52,6 +52,24 @@ function shno_load($atts = [], $content = null)
 }
 
 
+// function my_menu_pages() {
+//     $hook = add_submenu_page(
+//             'null', 'Page Title', 'Page Title', 'administrator', 'sub-menu-slug', function() {
+//     }
+//     );
+//     add_action('load-' . $hook, function() {
+//         // add your xml code here, 
+//         // you will get a blank page to start with
+//         require_once ABSPATH . 'wp-admin/admin-header.php'; 
+//         echo "hhhh";
+//          require_once ABSPATH . 'wp-admin/admin-footer.php'; 
+//         exit;
+//     });
+// }
+
+// add_action('admin_menu', 'my_menu_pages');
+
+
 
 
 

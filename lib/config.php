@@ -111,6 +111,23 @@ class Config
         return $wpdb->get_results($sql);
 
     }
+
+    public function getMessageById($id)
+    {
+        global $wpdb;
+        $sql = "
+        select *  from {$wpdb->prefix}shno_message_return where ".$id;
+        return $wpdb->get_results($sql);
+
+    }
+    public function updateSee($id)
+    {
+        global $wpdb;
+        $sql = "
+        update  {$wpdb->prefix}shno_message_return set Is_see=1 where ".$id;
+        return $wpdb->get_results($sql);
+
+    }
     public function save_message($arr)
     {
         global $wpdb;
@@ -136,23 +153,30 @@ class Config
     }
 
 
-    public function ShnoContacUS_see($id)
+    public function ShnoContacUS_see($request)
     {
-        global $wpdb;
-
-        $sql_string = "select *  FROM 
-        {$wpdb->prefix} shno_message_return where Id = ";
-       
-       
-       
-       
-       
-        // $sql_string = "select *  FROM 
-        // {$wpdb->prefix}shno_message_return where Id = " . $id;
+        
+        require_once ABSPATH . 'wp-admin/admin-header.php'; 
 
 
-        //this is okay this is best way tahnk you
-    //  var_dump($wpdb->get_results($sql_string));
+        $input = $request->get_params();
+        if (isset($input['id'])) {
+
+            global $wpdb;
+
+            $sql_string = "select *  FROM 
+            {$wpdb->prefix} shno_message_return where Id = {$input['id']}";
+
+            // var_dump($wpdb->get_results($sql_string));
+
+//         echo "hhhh";
+        //  require_once ABSPATH . 'wp-admin/admin-footer.php'; 
+
+           
+        }
+
+   
+
 
     echo "test";
 
